@@ -1,96 +1,67 @@
-# Pothole / Road Damage Detector
-
-**Course:** Computer Vision (24BAI10886)  
-**Type:** Individual Project — Classical CV, CLI-based  
+# Pothole & Road Damage Detector
 
 ## Overview
+A classical computer-vision pipeline that automatically detects and quantifies pothole and road-surface damage from images. The system evaluates the severity of the damage and produces structured severity reports (CSV/JSON). This project demonstrates classical CV techniques—specifically Adaptive Thresholding and Markov Random Field (MRF) Graph-Cut segmentation—without relying on deep learning.
 
-A classical computer-vision pipeline that automatically detects and quantifies pothole / road-surface damage from images, producing structured severity reports (CSV/JSON) — no deep learning, no GUI.
+## Features
+- **Classical Segmentation Engine**: Choose between a blazing-fast Adaptive Threshold method or a robust MRF Graph-Cut method.
+- **Automated Severity Scoring**: Calculates the damage area ratio and classifies severity into Low (<2%), Medium (2-8%), and High (>8%).
+- **Batch Processing & Reporting**: Processes hundreds of images at once and exports results to CSV and JSON.
+- **Mask Visualization**: Optionally exports images with damage highlighted as red overlays for easy verification.
+- **IoU Evaluation**: Automatically parses Pascal VOC XML annotations to compute Intersection over Union metrics against ground truth.
 
-## Setup
+## Technologies/Tools Used
+- **Language**: Python 3.13
+- **Computer Vision**: OpenCV (`cv2`) for image processing, filtering, CLAHE contrast enhancement, and thresholding.
+- **Math & Optimization**: NumPy for matrix operations, SciPy (`scipy.sparse.csgraph.maximum_flow`) for Graph-Cut energy minimization.
+- **Testing**: `pytest` for unit and integration testing.
 
+## Installation & Setup
+
+1. **Clone and navigate to the directory**:
+   ```bash
+   cd pothole-detector
+   ```
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Dataset Setup**: 
+   Place your input images in a directory (default: `../images/`) and Pascal VOC annotations in another (default: `../annotations/`).
+
+## Usage & Execution
+
+Run the pipeline using the CLI entry point `main.py`. 
+
+**Basic Run (Fast Threshold Method):**
 ```bash
-cd pothole-detector
-pip install -r requirements.txt
-```
-
-**Dataset:** Place images in `../images/` and annotations in `../annotations/` (or specify paths via CLI flags).
-
-## Usage
-
-```bash
-# Default: adaptive threshold method on all images
 python main.py
+```
 
-# Graph-Cut (MRF) method on first 10 images, with mask overlays
+**Graph-Cut Method on 10 images with Overlays:**
+```bash
 python main.py --method graphcut --max-images 10 --save-masks
+```
 
-# Custom paths
+**Custom Directories:**
+```bash
 python main.py --input /path/to/images --output /path/to/results --annotations /path/to/annotations
-
-# Quick timing test (recommended before full batch)
-python main.py --method graphcut --max-images 5 --save-masks
 ```
 
-### CLI Flags
+## Testing Instructions
 
-| Flag | Default | Description |
-|---|---|---|
-| `--input` | `../images` | Input image directory |
-| `--output` | `results/` | Output directory |
-| `--method` | `threshold` | `threshold` or `graphcut` |
-| `--annotations` | `../annotations` | Pascal VOC XML annotation directory |
-| `--save-masks` | off | Save mask overlay images |
-| `--max-images` | all | Limit number of images |
-| `--graphcut-resolution` | 400 | Max resolution for Graph-Cut (lower = faster) |
-
-## Output
-
-```
-results/
-├── report.csv          # Per-image: filename, area ratio, severity, IoU, timing
-├── report.json         # Same data in JSON format
-├── masks/              # Overlay images (if --save-masks)
-└── pipeline.log        # Full debug log
-```
-
-## Segmentation Methods
-
-### Method A: Adaptive Thresholding (default)
-Fast baseline — adaptive Gaussian threshold with morphological open/close to isolate dark damage regions.
-
-### Method B: Graph-Cut / MRF
-Energy minimization over a Markov Random Field:
-- **Data term:** Gaussian NLL from Otsu-split intensity distributions
-- **Smoothness term:** Contrast-sensitive Ising model
-- **Solver:** scipy `maximum_flow` (min-cut/max-flow)
-
-## Testing
-
+The project includes a comprehensive test suite for preprocessing, segmentation, and analysis modules.
+Run the tests using pytest:
 ```bash
 pytest tests/ -v
 ```
 
-## Project Structure
+## Example Outputs (Screenshots)
 
-```
-pothole-detector/
-├── main.py              # CLI entry point
-├── config.py            # All tunable parameters
-├── preprocessing.py     # Grayscale → denoise → CLAHE
-├── segmentation.py      # Threshold + Graph-Cut methods
-├── analysis.py          # Area/severity scoring, IoU eval, reporting
-├── utils.py             # I/O, annotation parsing, logging
-├── requirements.txt
-├── README.md
-└── tests/
-    ├── test_preprocessing.py
-    ├── test_segmentation.py
-    ├── test_analysis.py
-    └── test_integration.py
-```
+Below are the batch summaries generated by the CLI for both methods on a dataset of 665 images.
 
-## References
+### Graph-Cut Method Execution
+![Graph-Cut Batch Summary](assets/graphcut_summary.png)
 
-- [Pothole Detection Dataset (Kaggle)](https://www.kaggle.com/datasets/andrewmvd/pothole-detection)
-- Course notes: Image Segmentation (Graph-Cut, Mean-Shift, MRF), Histogram Processing
+### Threshold Method Execution
+![Threshold Batch Summary](assets/threshold_summary.png)
