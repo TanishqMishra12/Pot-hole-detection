@@ -1,0 +1,7 @@
+2026-09-12 13:54:30 | INFO    | Pothole Detector started — method=threshold
+2026-09-12 13:54:30 | INFO    | Input dir : D:\Computer Vision\images
+2026-09-12 13:54:30 | INFO    | Output dir: D:\Computer Vision\pothole-detector\results
+2026-09-12 13:54:30 | INFO    | Found 5 images to process
+2026-09-12 13:54:30 | INFO    | CSV report written: results\report.csv (5 rows)
+2026-09-12 13:54:30 | INFO    | JSON report written: results\report.json (5 records)
+2026-09-12 13:54:30 | INFO    | Pipeline complete. Reports at results

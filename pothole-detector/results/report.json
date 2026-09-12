@@ -1,0 +1,57 @@
+[
+  {
+    "filename": "potholes0.png",
+    "damage_area_ratio": 0.022259,
+    "severity": "Medium",
+    "num_regions_detected": 14,
+    "gt_boxes": 12,
+    "best_iou": 0.3753,
+    "mean_iou": 0.1,
+    "processing_time_sec": 0.02,
+    "method": "threshold"
+  },
+  {
+    "filename": "potholes1.png",
+    "damage_area_ratio": 0.0687,
+    "severity": "Medium",
+    "num_regions_detected": 28,
+    "gt_boxes": 2,
+    "best_iou": 0.0242,
+    "mean_iou": 0.0121,
+    "processing_time_sec": 0.014,
+    "method": "threshold"
+  },
+  {
+    "filename": "potholes10.png",
+    "damage_area_ratio": 0.003731,
+    "severity": "Low",
+    "num_regions_detected": 1,
+    "gt_boxes": 2,
+    "best_iou": 0.0,
+    "mean_iou": 0.0,
+    "processing_time_sec": 0.032,
+    "method": "threshold"
+  },
+  {
+    "filename": "potholes100.png",
+    "damage_area_ratio": 0.008333,
+    "severity": "Low",
+    "num_regions_detected": 3,
+    "gt_boxes": 1,
+    "best_iou": 0.1298,
+    "mean_iou": 0.1298,
+    "processing_time_sec": 0.013,
+    "method": "threshold"
+  },
+  {
+    "filename": "potholes101.png",
+    "damage_area_ratio": 0.034421,
+    "severity": "Medium",
+    "num_regions_detected": 20,
+    "gt_boxes": 2,
+    "best_iou": 0.0,
+    "mean_iou": 0.0,
+    "processing_time_sec": 0.016,
+    "method": "threshold"
+  }
+]

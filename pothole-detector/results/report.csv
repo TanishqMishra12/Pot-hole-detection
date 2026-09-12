@@ -1,0 +1,6 @@
+filename,damage_area_ratio,severity,num_regions_detected,gt_boxes,best_iou,mean_iou,processing_time_sec,method
+potholes0.png,0.022259,Medium,14,12,0.3753,0.1,0.02,threshold
+potholes1.png,0.0687,Medium,28,2,0.0242,0.0121,0.014,threshold
+potholes10.png,0.003731,Low,1,2,0.0,0.0,0.032,threshold
+potholes100.png,0.008333,Low,3,1,0.1298,0.1298,0.013,threshold
+potholes101.png,0.034421,Medium,20,2,0.0,0.0,0.016,threshold
