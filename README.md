@@ -1,7 +1,7 @@
 # Pothole & Road Damage Detector
 
 ## Overview
-A classical computer-vision pipeline that automatically detects and quantifies pothole and road-surface damage from images. The system evaluates the severity of the damage and produces structured severity reports (CSV/JSON). This project demonstrates classical CV techniques—specifically Adaptive Thresholding and Markov Random Field (MRF) Graph-Cut segmentation—without relying on deep learning.
+This project detects and measures pothole and road-surface damage from images — the old-school way, using classical computer vision instead of deep learning. It looks at each image, figures out how much of the surface is damaged, and scores the severity as Low (<2%), Medium (2–8%), or High (>8%) based on the damage area ratio. Results are exported as structured CSV/JSON reports, making it easy to review a batch of images at a glance.
 
 ## Features
 - **Classical Segmentation Engine**: Choose between a blazing-fast Adaptive Threshold method or a robust MRF Graph-Cut method.
