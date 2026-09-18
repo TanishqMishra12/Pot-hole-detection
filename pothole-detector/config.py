@@ -20,7 +20,7 @@ class PipelineConfig:
     # ── Paths ────────────────────────────────────────────────────────────
     input_dir: str = os.path.join("..", "images")
     annotation_dir: str = os.path.join("..", "annotations")
-    output_dir: str = "results"
+    output_dir: str = os.path.join("..", "results")
 
     # ── Segmentation method ──────────────────────────────────────────────
     # "threshold" (adaptive thresholding + morphology)  or
